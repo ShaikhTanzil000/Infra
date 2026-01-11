@@ -81,4 +81,4 @@ pipeline {
 
 
 
-# Complete project by making it functional at the production grade. Jeninks run second infra, Github pull and get, simulate production app update infra update, dev push an update of python app on github and test jekins should update the app in real time (Infra).
+// # Complete project by making it functional at the production grade. Jeninks run second infra, Github pull and get, simulate production app update infra update, dev push an update of python app on github and test jekins should update the app in real time (Infra).
