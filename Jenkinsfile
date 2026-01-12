@@ -42,7 +42,7 @@ pipeline {
                             sh 'ls -la'
                             sh 'pwd'
                             sh 'find . -name "terraform.tfvars"'
-                            sh 'terraform plan -var-file="terraform.tfvars"'
+                            sh 'terraform plan -var-file="../terraform.tfvars"'
                             }
                         }
                     }
@@ -57,7 +57,7 @@ pipeline {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]){
                             dir('Infra') {
                                 sh 'echo "=================Terraform Apply=================="'
-                                sh 'terraform apply -auto-approve -var-file="terraform.tfvars"'
+                                sh 'terraform apply -auto-approve -var-file="../terraform.tfvars"'
                             }
                         }
                     }
@@ -72,7 +72,7 @@ pipeline {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]){
                             dir('Infra') {
                                 sh 'echo "=================Terraform Destroy=================="'
-                                sh 'terraform destroy -auto-approve -var-file="terraform.tfvars"'
+                                sh 'terraform destroy -auto-approve -var-file="../terraform.tfvars"'
                             }
                         }
                     }
