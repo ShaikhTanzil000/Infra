@@ -39,7 +39,7 @@ pipeline {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]){
                             dir('Infra') {
                                 sh 'echo "=================Terraform Plan=================="'
-                                sh 'terraform plan'
+                                sh 'terraform plan -var-file="terraform.tfvars"'
                             }
                         }
                     }
@@ -54,7 +54,7 @@ pipeline {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]){
                             dir('Infra') {
                                 sh 'echo "=================Terraform Apply=================="'
-                                sh 'terraform apply -auto-approve'
+                                sh 'terraform apply -auto-approve -var-file="terraform.tfvars"'
                             }
                         }
                     }
@@ -69,7 +69,7 @@ pipeline {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]){
                             dir('Infra') {
                                 sh 'echo "=================Terraform Destroy=================="'
-                                sh 'terraform destroy -auto-approve'
+                                sh 'terraform destroy -auto-approve -var-file="terraform.tfvars"'
                             }
                         }
                     }
