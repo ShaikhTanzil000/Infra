@@ -38,8 +38,11 @@ pipeline {
                     if (params.PLAN_TERRAFORM) {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]){
                             dir('Infra') {
-                                sh 'echo "=================Terraform Plan=================="'
-                                sh 'terraform plan -var-file="terraform.tfvars"'
+                            sh 'echo "=================Terraform Plan=================="'
+                            sh 'ls -la'
+                            sh 'pwd'
+                            sh 'find . -name "terraform.tfvars"'
+                            sh 'terraform plan -var-file="terraform.tfvars"'
                             }
                         }
                     }
