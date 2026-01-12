@@ -8,6 +8,5 @@ terraform {
 }
 
 provider "aws" {
-  profile = "tanzil-engineer"
   region  = "eu-central-1"
 }
