@@ -24,7 +24,7 @@ output "aws_lb_zone_id" {
 
 
 resource "aws_lb" "dev_proj_1_lb" {
-  name               = var.lb_name
+  name               = "${var.lb_name}-${formatdate("YYYYMMDD-hhmm", timestamp())}"
   internal           = var.is_external
   load_balancer_type = var.lb_type
   security_groups    = [var.sg_enable_ssh_https]
