@@ -29,3 +29,7 @@ resource "aws_db_instance" "default" {
   backup_retention_period = 0
   deletion_protection     = false
 }
+
+output "rds_endpoint" {
+  value = aws_db_instance.default.endpoint
+}

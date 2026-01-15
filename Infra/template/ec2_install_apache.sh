@@ -1,13 +1,14 @@
 #! /bin/bash
-# shellcheck disable=SC2164
 cd /home/ubuntu
-yes | sudo apt update
-yes | sudo apt install python3 python3-pip
+sudo apt update -y
+sudo apt install python3 python3-flask python3-pymysql git -y
 git clone https://github.com/rahulwagh/python-mysql-db-proj-1.git
-sleep 20
-# shellcheck disable=SC2164
 cd python-mysql-db-proj-1
-pip3 install -r requirements.txt
-echo 'Waiting for 30 seconds before running the app.py'
-setsid python3 -u app.py &
-sleep 30
+
+# Update app.py with correct RDS endpoint
+sed -i "s/host='[^']*'/host='${rds_endpoint}'/" app.py
+sed -i "s/user='[^']*'/user='${db_username}'/" app.py
+sed -i "s/password='[^']*'/password='${db_password}'/" app.py
+sed -i "s/db='[^']*'/db='${db_name}'/" app.py
+
+nohup python3 app.py > app.log 2>&1 &
